@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CharacterCreator.unity
     guid: 8d1f1cb64ac13d34fa8e2294b5824666
+  - enabled: 1
+    path: Assets/Scenes/mapSelection.unity
+    guid: e8767606fdd56934ea965e61ed3875af
+  - enabled: 1
+    path: Assets/Scenes/VillageScene.unity
+    guid: 4e518d7ba43c1b14889adba954ad4051
+  - enabled: 1
+    path: Assets/Scenes/DungeonScene.unity
+    guid: 18c3c5243ac50c648b14a747e56df51a
+  - enabled: 1
+    path: Assets/Scenes/ForestScene.unity
+    guid: 303a22b038c73fb479d7bac8043d9a49
   m_configObjects: {}

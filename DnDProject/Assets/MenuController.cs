@@ -9,7 +9,6 @@ public class NewBehaviourScript : MonoBehaviour
 {
     [Header("Levels to Load")]
     public string _newGameLevel;
-    public string _oldGameLevel;
     private string levelToLoad;
     [SerializeField] private GameObject noSavedGameDialog = null;
 
@@ -17,11 +16,6 @@ public class NewBehaviourScript : MonoBehaviour
     {
         SceneManager.LoadScene(_newGameLevel);
 
-    }
-
-    public void NewGameDialogNo()
-    {
-        SceneManager.LoadScene(_oldGameLevel);
     }
 
     public void LoadGameDialogYes()
