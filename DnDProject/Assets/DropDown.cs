@@ -15,7 +15,7 @@ public class DropDown : MonoBehaviour
     {
         if (value == 0)
         {
-            RaceOutput.text = "Secret";
+            RaceOutput.text = " ";
         }
         if (value == 1)
         {
@@ -121,7 +121,7 @@ public class DropDown : MonoBehaviour
     {
         if (value == 0)
         {
-            ClassOutput.text = "Secret";
+            ClassOutput.text = " ";
         }
         if (value == 1)
         {
@@ -237,63 +237,13 @@ public class DropDown : MonoBehaviour
 
     public void HandleBackroundData(int value)
     {
-        if (value == 0)
-        {
-            BackroundOutput.text = "Secret";
-        }
-        if (value == 1)
-        {
-            BackroundOutput.text = "Acolyte: T";
-            temp = 1;
-        }
-        if (value == 2)
-        {
-            BackroundOutput.text = "Dwarf: \n\nCon: +2, Speed: 25ft";
-            temp = 2;
-        }
-        if (value == 3)
-        {
-            BackroundOutput.text = "Elf: \n\nDex: +2, Speed: 30ft";
-            temp = 3;
-        }
-        if (value == 4)
-        {
-            BackroundOutput.text = "Gnome: \n\nInt: +2, Speed: 25ft";
-            temp = 4;
-        }
-        if (value == 5)
-        {
-            BackroundOutput.text = "Half-Elf: \n\nCha: +2, Dex: +1, Speed: 30ft";
-            temp = 5;
-        }
-        if (value == 6)
-        {
-            BackroundOutput.text = "Half-Orc: \n\nStr: +2, Con: +1, Speed: 30ft";
-            temp = 6;
-        }
-        if (value == 7)
-        {
-            BackroundOutput.text = "Halfling: \n\nDex: +2, Speed: 25ft";
-            temp = 7;
-        }
-        if (value == 8)
-        {
-            BackroundOutput.text = "Human: \n\nAll: +1, Speed: 30ft";
-            temp = 8;
-        }
-        if (value == 9)
-        {
-            BackroundOutput.text = "Tiefling: \n\nCha: +2, Speed: 30ft";
-            temp = 9;
-        }
-
         switch (value)
         {
             case 0:
-                BackroundOutput.text = "Secret";
+                BackroundOutput.text = " ";
                 break;
             case 1:
-                BackroundOutput.text = "Acolyte: T";
+                BackroundOutput.text = "Acolyte";
                 break;
             case 2:
                 BackroundOutput.text = "Anthropologist";
