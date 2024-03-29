@@ -11565,6 +11565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newGameLevel: CharacterCreator
+  _mapGameLevel: 
+  _oldGameLevel: MainMenu
   noSavedGameDialog: {fileID: 0}
 --- !u!4 &1104112993
 Transform:
