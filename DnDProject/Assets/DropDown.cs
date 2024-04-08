@@ -9,6 +9,11 @@ public class DropDown : MonoBehaviour
     public int temp;
     public DropDown DropDown1;
     public TMP_Dropdown DropDown2;
+    string feat1 = "";
+    string feat2 = "";
+    string feat3 = "";
+    string feat4 = "";
+    string feat5 = "";
 
     public TextMeshProUGUI ClassOutput, RaceOutput, SubRaceOutput, BackroundOutput, FeatOutput, SpellOutput, ItemOutput;
     public void HandleRaceData(int value)
@@ -226,17 +231,17 @@ public class DropDown : MonoBehaviour
         //insert different data based on levels
     }
 
-    public void HandleFeatDropdown(int value)
+    public void HandleFeatDropdown(int val)
     {
         //Insert different cases for feat and data
-        if (value == 1)
+        if (val == 0)
         {
             FeatOutput.text = "Alert: " +
                 "\n Gain a +5 bonus to initiative." +
                 "\n Can’t be surprised while conscious." +
                 "\n Other creatures don’t gain advantage on attack rolls against you as a result of being hidden from you.";
         }
-        if (value == 2)
+        if (val == 1)
         {
             FeatOutput.text = "Athlete: " +
                 "\n Increase your Strength or Dexterity score by 1, to a maximum of 20." +
@@ -244,47 +249,47 @@ public class DropDown : MonoBehaviour
                 "\n Climbing doesn’t halve your speed." +
                 "\n Can make a running long jump or a running high jump after moving only 5 feet on foot.";
         }
-        if (value == 3)
+        if (val == 2)
         {
             FeatOutput.text = "Actor: " +
                 "\n Increase your Charisma score by 1, to a maximum of 20." +
                 "\n Have advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person." +
                 "\n Can mimic the speech of another person or the sounds made by other creatures.";
         }
-        if (value == 4)
+        if (val == 3)
         {
             FeatOutput.text = "Crossbow Expert: " +
                 "\n You ignore the loading quality of crossbow s with which you are proficient." +
                 "\n Being within 5 feet of a hostile creature doesn’t impose disadvantage on your ranged attack rolls." +
                 "\n When you use the Attack action and attack with a one handed weapon, you can use a bonus action to attack with a loaded hand crossbow you are holding.";
         }
-        if (value == 5)
+        if (val == 4)
         {
             FeatOutput.text = "Defensive Duelist" +
                 "\n When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you.";
         }
-        if (value == 6)
+        if (val == 5)
         {
             FeatOutput.text = "Dual Wielder" +
                 "\n You gain a +1 bonus to AC while you are wielding a separate melee weapon in each hand.";
         }
-        if (value == 7)
+        if (val == 6)
         {
             FeatOutput.text = "Durable" +
                 "\n Increase constitution by 1";
         }
-        if (value == 8)
+        if (val == 7)
         {
             FeatOutput.text = "Elemental Adept" +
                 "\n choose one o f the following damage types: acid, cold, fire, lightning, or thunder. Spells you cast ignore resistance to damage of the chosen type.";
         }
-        if (value == 9)
+        if (val == 8)
         {
             FeatOutput.text = "Great Weapon Master" +
                 "\n On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as abonus action." +
                 "\n you can choose to take a - 5 penalty to the attack roll. If the attack hits, you add +10 to the attack’s damage." ;
         }
-        if (value == 10)
+        if (val == 9)
         {
             FeatOutput.text = "Mobile" +
                 "\n Speed increases by 10ft" +
@@ -292,6 +297,7 @@ public class DropDown : MonoBehaviour
         }
 
     }
+
     public void HandleSpellDraopdown()
     {
         //Insert different cases for feat and data
