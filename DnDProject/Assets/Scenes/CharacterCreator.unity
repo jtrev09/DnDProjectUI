@@ -5218,7 +5218,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 460338888}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 463199208}
+        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+        m_MethodName: HandleFeatDeleteButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &460338888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5376,6 +5388,11 @@ MonoBehaviour:
   temp: 0
   DropDown1: {fileID: 463199208}
   DropDown2: {fileID: 1931035819}
+  feat1: 
+  feat2: 
+  feat3: 
+  feat4: 
+  feat5: 
   ClassOutput: {fileID: 1041348754}
   RaceOutput: {fileID: 625671426}
   SubRaceOutput: {fileID: 0}
@@ -5383,6 +5400,11 @@ MonoBehaviour:
   FeatOutput: {fileID: 341796867}
   SpellOutput: {fileID: 0}
   ItemOutput: {fileID: 0}
+  Selected1: {fileID: 909447942}
+  Selected2: {fileID: 1638139866}
+  Selected3: {fileID: 1560220136}
+  Selected4: {fileID: 2017339354}
+  Selected5: {fileID: 756493197}
 --- !u!4 &463199209
 Transform:
   m_ObjectHideFlags: 0
@@ -8772,7 +8794,7 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -10793,7 +10815,7 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -13486,8 +13508,20 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 463199208}
         m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
-        m_MethodName: handleFeatSelect
-        m_Mode: 1
+        m_MethodName: HandleFeatDropdown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 463199208}
+        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+        m_MethodName: UpdateFeatButton
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18231,7 +18265,7 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -19654,7 +19688,7 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
@@ -21705,7 +21739,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1801167433}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 463199208}
+        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+        m_MethodName: HandleFeatButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1801167433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24790,7 +24836,7 @@ MonoBehaviour:
   m_fontSize: 50
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1

@@ -9,13 +9,14 @@ public class DropDown : MonoBehaviour
     public int temp;
     public DropDown DropDown1;
     public TMP_Dropdown DropDown2;
-    string feat1 = "";
-    string feat2 = "";
-    string feat3 = "";
-    string feat4 = "";
-    string feat5 = "";
+    private int featIndex = 0;
+    public string feat1 = "";
+    public string feat2 = "";
+    public string feat3 = "";
+    public string feat4 = "";
+    public string feat5 = "";
 
-    public TextMeshProUGUI ClassOutput, RaceOutput, SubRaceOutput, BackroundOutput, FeatOutput, SpellOutput, ItemOutput;
+    public TextMeshProUGUI ClassOutput, RaceOutput, SubRaceOutput, BackroundOutput, FeatOutput, SpellOutput, ItemOutput, Selected1, Selected2, Selected3, Selected4, Selected5;
     public void HandleRaceData(int value)
     {
         if (value == 0)
@@ -231,6 +232,65 @@ public class DropDown : MonoBehaviour
         //insert different data based on levels
     }
 
+    public void UpdateFeatButton(int selected)
+    {
+        featIndex = selected;
+    }
+
+    public void HandleFeatButton()
+    {
+        HandleFeatDropdown(featIndex);
+        if (Selected1.text == "")
+        {
+            Selected1.text = FeatOutput.text;
+        }
+        else if (Selected2.text == "")
+        {
+            Selected2.text = FeatOutput.text;
+        }
+        else if (Selected3.text == "")
+        {
+            Selected3.text = FeatOutput.text;
+        }
+        else if (Selected4.text == "")
+        {
+            Selected4.text = FeatOutput.text;
+        }
+        else if (Selected5.text == "")
+        {
+            Selected5.text = FeatOutput.text;
+        }
+        else
+            Debug.Log("done");
+    }
+
+    public void HandleFeatDeleteButton()
+    {
+        //HandleFeatDropdown(featIndex);
+        if (Selected5.text != "")
+        {
+            Selected5.text = "";
+        }
+        else if (Selected4.text != "")
+        {
+            Selected4.text = "";
+        }
+        else if (Selected3.text != "")
+        {
+            Selected3.text = "";
+        }
+        else if (Selected2.text != "")
+        {
+            Selected2.text = "";
+        }
+        else if (Selected1.text != "")
+        {
+            Selected1.text = "";
+        }
+        else
+            Debug.Log("done");
+    }
+
     public void HandleFeatDropdown(int val)
     {
         //Insert different cases for feat and data
@@ -246,20 +306,17 @@ public class DropDown : MonoBehaviour
             FeatOutput.text = "Athlete: " +
                 "\n Increase your Strength or Dexterity score by 1, to a maximum of 20." +
                 "\n Standing up from prone uses only 5 feet of movement." +
-                "\n Climbing doesn’t halve your speed." +
                 "\n Can make a running long jump or a running high jump after moving only 5 feet on foot.";
         }
         if (val == 2)
         {
             FeatOutput.text = "Actor: " +
                 "\n Increase your Charisma score by 1, to a maximum of 20." +
-                "\n Have advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person." +
-                "\n Can mimic the speech of another person or the sounds made by other creatures.";
+                "\n Have advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person.";
         }
         if (val == 3)
         {
             FeatOutput.text = "Crossbow Expert: " +
-                "\n You ignore the loading quality of crossbow s with which you are proficient." +
                 "\n Being within 5 feet of a hostile creature doesn’t impose disadvantage on your ranged attack rolls." +
                 "\n When you use the Attack action and attack with a one handed weapon, you can use a bonus action to attack with a loaded hand crossbow you are holding.";
         }
@@ -270,26 +327,21 @@ public class DropDown : MonoBehaviour
         }
         if (val == 5)
         {
-            FeatOutput.text = "Dual Wielder" +
-                "\n You gain a +1 bonus to AC while you are wielding a separate melee weapon in each hand.";
-        }
-        if (val == 6)
-        {
             FeatOutput.text = "Durable" +
                 "\n Increase constitution by 1";
         }
-        if (val == 7)
+        if (val == 6)
         {
             FeatOutput.text = "Elemental Adept" +
                 "\n choose one o f the following damage types: acid, cold, fire, lightning, or thunder. Spells you cast ignore resistance to damage of the chosen type.";
         }
-        if (val == 8)
+        if (val == 7)
         {
             FeatOutput.text = "Great Weapon Master" +
-                "\n On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as abonus action." +
+                "\n On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action." +
                 "\n you can choose to take a - 5 penalty to the attack roll. If the attack hits, you add +10 to the attack’s damage." ;
         }
-        if (val == 9)
+        if (val == 8)
         {
             FeatOutput.text = "Mobile" +
                 "\n Speed increases by 10ft" +
@@ -298,7 +350,7 @@ public class DropDown : MonoBehaviour
 
     }
 
-    public void HandleSpellDraopdown()
+    public void HandleSpellDropdown()
     {
         //Insert different cases for feat and data
         int pickedEntryIndex = dropdown.value;
