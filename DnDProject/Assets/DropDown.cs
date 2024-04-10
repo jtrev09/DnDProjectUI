@@ -84,6 +84,10 @@ public class DropDown : MonoBehaviour
     }
 
 
+    private int featIndex = 0;
+    private int spellIndex = 0;
+
+    public TextMeshProUGUI ClassOutput, RaceOutput, SubRaceOutput, BackroundOutput, FeatOutput, SpellOutput, ItemOutput, Selected1, Selected2, Selected3, Selected4, Selected5, Spell1, Spell2, Spell3;
     public void HandleRaceData(int value)
     {
         if (value == 0)
@@ -330,6 +334,121 @@ public class DropDown : MonoBehaviour
         FeatOutput.text = selectedOptions;
         //feats.Add(FeatOutput);
         MainManager.Instance.player.AddFeat(selectedOptions);
+    public void UpdateFeatButton(int selected)
+    {
+        featIndex = selected;
+    }
+
+    public void HandleFeatButton()
+    {
+        HandleFeatDropdown(featIndex);
+        if (Selected1.text == "")
+        {
+            Selected1.text = FeatOutput.text;
+        }
+        else if (Selected2.text == "")
+        {
+            Selected2.text = FeatOutput.text;
+        }
+        else if (Selected3.text == "")
+        {
+            Selected3.text = FeatOutput.text;
+        }
+        else if (Selected4.text == "")
+        {
+            Selected4.text = FeatOutput.text;
+        }
+        else if (Selected5.text == "")
+        {
+            Selected5.text = FeatOutput.text;
+        }
+        else
+            Debug.Log("done");
+    }
+
+    public void HandleFeatDeleteButton()
+    {
+        //HandleFeatDropdown(featIndex);
+        if (Selected5.text != "")
+        {
+            Selected5.text = "";
+        }
+        else if (Selected4.text != "")
+        {
+            Selected4.text = "";
+        }
+        else if (Selected3.text != "")
+        {
+            Selected3.text = "";
+        }
+        else if (Selected2.text != "")
+        {
+            Selected2.text = "";
+        }
+        else if (Selected1.text != "")
+        {
+            Selected1.text = "";
+        }
+        else
+            Debug.Log("done");
+    }
+
+    public void HandleFeatDropdown(int val)
+    {
+        //Insert different cases for feat and data
+        if (val == 0)
+        {
+            FeatOutput.text = "Alert: " +
+                "\n Gain a +5 bonus to initiative." +
+                "\n Can�t be surprised while conscious." +
+                "\n Other creatures don�t gain advantage on attack rolls against you as a result of being hidden from you.";
+        }
+        if (val == 1)
+        {
+            FeatOutput.text = "Athlete: " +
+                "\n Increase your Strength or Dexterity score by 1, to a maximum of 20." +
+                "\n Standing up from prone uses only 5 feet of movement." +
+                "\n Can make a running long jump or a running high jump after moving only 5 feet on foot.";
+        }
+        if (val == 2)
+        {
+            FeatOutput.text = "Actor: " +
+                "\n Increase your Charisma score by 1, to a maximum of 20." +
+                "\n Have advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person.";
+        }
+        if (val == 3)
+        {
+            FeatOutput.text = "Crossbow Expert: " +
+                "\n Being within 5 feet of a hostile creature doesn�t impose disadvantage on your ranged attack rolls." +
+                "\n When you use the Attack action and attack with a one handed weapon, you can use a bonus action to attack with a loaded hand crossbow you are holding.";
+        }
+        if (val == 4)
+        {
+            FeatOutput.text = "Defensive Duelist" +
+                "\n When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you.";
+        }
+        if (val == 5)
+        {
+            FeatOutput.text = "Durable" +
+                "\n Increase constitution by 1";
+        }
+        if (val == 6)
+        {
+            FeatOutput.text = "Elemental Adept" +
+                "\n choose one o f the following damage types: acid, cold, fire, lightning, or thunder. Spells you cast ignore resistance to damage of the chosen type.";
+        }
+        if (val == 7)
+        {
+            FeatOutput.text = "Great Weapon Master" +
+                "\n On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action." +
+                "\n you can choose to take a - 5 penalty to the attack roll. If the attack hits, you add +10 to the attack�s damage." ;
+        }
+        if (val == 8)
+        {
+            FeatOutput.text = "Mobile" +
+                "\n Speed increases by 10ft" +
+                "\n Difficult terrain doesn't cost extra movement";
+        }
 
     }
     public void HandleItemDropdown()
@@ -346,6 +465,72 @@ public class DropDown : MonoBehaviour
     }
 
 
+
+    public void HandleSpellDropdown(int val)
+    {
+        if (val == 0)
+        {
+            SpellOutput.text = "FireBall: " +
+                "\n Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw." +
+                "\n  A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.";               
+        }
+        if (val == 1)
+        {
+            SpellOutput.text = "Disintegrate: " +
+                "\n A creature targeted by this spell must make a Dexterity saving throw." +
+                "\n On a failed save, the target takes 10d6 + 40 force damage." +
+                "\n The target is disintegrated if this damage leaves it with 0 hit points.";
+        }
+        if (val == 2)
+        {
+            SpellOutput.text = "TrUe STriKe: " +
+                "\n oN yOuR nExT tUrN, yOu GaIn AdVaNtAgE oN yOuR fIrSt AtTaCk RoLl AgAiNsT tHe TaRgEt, pRoViDeD tHaT tHiS sPeLl HaSn'T eNdEd.";
+        }
+
+    }
+
+    public void UpdateSpellButton(int selected)
+    {
+        spellIndex = selected;
+    }
+
+    public void HandleSpellButton()
+    {
+        HandleSpellDropdown(spellIndex);
+        if (Spell1.text == "")
+        {
+            Spell1.text = SpellOutput.text;
+        }
+        else if (Spell2.text == "")
+        {
+            Spell2.text = SpellOutput.text;
+        }
+        else if (Spell3.text == "")
+        {
+            Spell3.text = SpellOutput.text;
+        }
+        else
+            Debug.Log("done");
+    }
+
+    public void HandleSpellDeleteButton()
+    {
+        
+        if (Spell3.text != "")
+        {
+            Spell3.text = "";
+        }
+        else if (Spell2.text != "")
+        {
+            Spell2.text = "";
+        }
+        else if (Spell1.text != "")
+        {
+            Spell1.text = "";
+        }
+        else
+            Debug.Log("done");
+    }
 
     public void HandleBackroundData(int value)
     {
