@@ -10,13 +10,9 @@ public class DropDown : MonoBehaviour
     public DropDown DropDown1;
     public TMP_Dropdown DropDown2;
     private int featIndex = 0;
-    public string feat1 = "";
-    public string feat2 = "";
-    public string feat3 = "";
-    public string feat4 = "";
-    public string feat5 = "";
+    private int spellIndex = 0;
 
-    public TextMeshProUGUI ClassOutput, RaceOutput, SubRaceOutput, BackroundOutput, FeatOutput, SpellOutput, ItemOutput, Selected1, Selected2, Selected3, Selected4, Selected5;
+    public TextMeshProUGUI ClassOutput, RaceOutput, SubRaceOutput, BackroundOutput, FeatOutput, SpellOutput, ItemOutput, Selected1, Selected2, Selected3, Selected4, Selected5, Spell1, Spell2, Spell3;
     public void HandleRaceData(int value)
     {
         if (value == 0)
@@ -350,13 +346,70 @@ public class DropDown : MonoBehaviour
 
     }
 
-    public void HandleSpellDropdown()
+    public void HandleSpellDropdown(int val)
     {
-        //Insert different cases for feat and data
-        int pickedEntryIndex = dropdown.value;
-        string selectedOptions = dropdown.options[pickedEntryIndex].text;
-        FeatOutput.text = selectedOptions;
+        if (val == 0)
+        {
+            SpellOutput.text = "FireBall: " +
+                "\n Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw." +
+                "\n  A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.";               
+        }
+        if (val == 1)
+        {
+            SpellOutput.text = "Disintegrate: " +
+                "\n A creature targeted by this spell must make a Dexterity saving throw." +
+                "\n On a failed save, the target takes 10d6 + 40 force damage." +
+                "\n The target is disintegrated if this damage leaves it with 0 hit points.";
+        }
+        if (val == 2)
+        {
+            SpellOutput.text = "TrUe STriKe: " +
+                "\n oN yOuR nExT tUrN, yOu GaIn AdVaNtAgE oN yOuR fIrSt AtTaCk RoLl AgAiNsT tHe TaRgEt, pRoViDeD tHaT tHiS sPeLl HaSn'T eNdEd.";
+        }
 
+    }
+
+    public void UpdateSpellButton(int selected)
+    {
+        spellIndex = selected;
+    }
+
+    public void HandleSpellButton()
+    {
+        HandleSpellDropdown(spellIndex);
+        if (Spell1.text == "")
+        {
+            Spell1.text = SpellOutput.text;
+        }
+        else if (Spell2.text == "")
+        {
+            Spell2.text = SpellOutput.text;
+        }
+        else if (Spell3.text == "")
+        {
+            Spell3.text = SpellOutput.text;
+        }
+        else
+            Debug.Log("done");
+    }
+
+    public void HandleSpellDeleteButton()
+    {
+        
+        if (Spell3.text != "")
+        {
+            Spell3.text = "";
+        }
+        else if (Spell2.text != "")
+        {
+            Spell2.text = "";
+        }
+        else if (Spell1.text != "")
+        {
+            Spell1.text = "";
+        }
+        else
+            Debug.Log("done");
     }
 
     public void HandleBackroundData(int value)
