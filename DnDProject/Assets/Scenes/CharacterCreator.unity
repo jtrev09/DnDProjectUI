@@ -3265,6 +3265,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 324851281}
   m_CullTransparentMesh: 1
+--- !u!1 &326500249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 326500251}
+  - component: {fileID: 326500250}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &326500250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326500249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e58b37650a7d24581b2712573c757c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &326500251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326500249}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1027.9215, y: 559.4601, z: 4.4039097}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &327429525
 GameObject:
   m_ObjectHideFlags: 0
@@ -5542,10 +5586,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c725b5cefcedeb4ebd9157619ee36ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropdown: {fileID: 0}
+  dropdown: {fileID: 1179698238}
+  dropdown3: {fileID: 1178061814}
+  dropdown4: {fileID: 934624438}
   temp: 0
   DropDown1: {fileID: 463199208}
   DropDown2: {fileID: 1931035819}
+  race: 
+  class: 
+  background: 
+  level: 1
+  feats:
+  - 
   ClassOutput: {fileID: 1041348754}
   RaceOutput: {fileID: 625671426}
   SubRaceOutput: {fileID: 0}
@@ -10549,6 +10601,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 463199208}
+        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+        m_MethodName: ShowPlayerFeats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &878813352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10762,6 +10826,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 463199208}
+        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+        m_MethodName: ShowPlayerSpell
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11491,6 +11567,7 @@ MonoBehaviour:
       - m_Target: {fileID: 463199208}
         m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
         m_MethodName: HandleSpellDropdown
+        m_Mode: 1
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11662,6 +11739,30 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 463199208}
+        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+        m_MethodName: SetPlayerStats
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 463199208}
+        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+        m_MethodName: showStats
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12474,6 +12575,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 463199208}
+        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+        m_MethodName: ShowPlayerItem
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13479,8 +13592,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 463199208}
         m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
-        m_MethodName: HandleRaceData
-        m_Mode: 0
+        m_MethodName: HandleItemDropdown
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13777,6 +13890,7 @@ MonoBehaviour:
       - m_Target: {fileID: 463199208}
         m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
         m_MethodName: HandleFeatDropdown
+        m_Mode: 1
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17739,7 +17853,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 463199208}
         m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
-        m_MethodName: HandleRaceData
+        m_MethodName: HandleLevelDropdown
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21924,6 +22038,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 0
+--- !u!1 &1773701059
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1773701061}
+  - component: {fileID: 1773701060}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1773701060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773701059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0501a8b46ad87b347a2b808f3a18c6e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  race: 
+  class: 
+  background: 
+  player: {fileID: 326500250}
+--- !u!4 &1773701061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773701059}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1027.9215, y: 559.4601, z: 4.4039097}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1801167430
 GameObject:
   m_ObjectHideFlags: 0
@@ -22498,6 +22660,30 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 463199208}
+        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+        m_MethodName: SetStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 463199208}
+        m_TargetAssemblyTypeName: DropDown, Assembly-CSharp
+        m_MethodName: showRace
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -26294,3 +26480,5 @@ SceneRoots:
   - {fileID: 671988064}
   - {fileID: 1104112993}
   - {fileID: 463199209}
+  - {fileID: 1773701061}
+  - {fileID: 326500251}
