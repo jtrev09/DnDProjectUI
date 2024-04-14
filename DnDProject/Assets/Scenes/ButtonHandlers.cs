@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonHandlers : MonoBehaviour
 {
-    public Button attackButton; //drag-n-drop the button in the CustomButton field
+    public Button attackButton;
     public Button spellButton;
     public Button itemButton;
     public GameObject atkPopup;
