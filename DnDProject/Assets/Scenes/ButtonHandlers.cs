@@ -5,12 +5,17 @@ using UnityEngine.UI;
 
 public class ButtonHandlers : MonoBehaviour
 {
-    public Button attackButton; //drag-n-drop the button in the CustomButton field
+    public Button attackButton;
     public Button spellButton;
     public Button itemButton;
+    public Button moveButton;
     public GameObject atkPopup;
     public GameObject spellPopup;
     public GameObject itemPopup;
+    public GameObject moveMap;
+
+    public Agent moveThis;
+    
 
     public Button confirmYesButton;
     public Button endButton;
@@ -26,12 +31,13 @@ public class ButtonHandlers : MonoBehaviour
     public Image activeBonusaction;
     public Image inactiveBonusaction;
     public Image health;
-    public float hp = 100;
-    public float maxhp = 100;
+
+    public int size1 = 5;
+    public Image range1;
 
     void Update()
     {
-        health.fillAmount = (float)MainManager.Instance.player.GetCurrentHp() / (float)MainManager.Instance.player.GetMaxHp();
+        //health.fillAmount = (float)MainManager.Instance.player.GetCurrentHp() / (float)MainManager.Instance.player.GetMaxHp();
         
         
     }
@@ -43,6 +49,7 @@ public class ButtonHandlers : MonoBehaviour
         attackButton.onClick.AddListener(attackButton_onClick); //subscribe to the onClick event
         spellButton.onClick.AddListener(spellButton_onClick);
         itemButton.onClick.AddListener(itemButton_onClick);
+        moveButton.onClick.AddListener(moveButton_onClick);
 
         confirmYesButton.onClick.AddListener(confirmYesButton_onClick);
         endButton.onClick.AddListener(endButton_onClick);
@@ -77,6 +84,21 @@ public class ButtonHandlers : MonoBehaviour
             Debug.Log("item button");
             choseBAction = true;
             itemPopup.SetActive(true);
+        }
+
+    }
+    void moveButton_onClick()
+    {
+        if (true)
+        {
+            Debug.Log("move button");
+            
+            
+            moveThis.willMove = true;
+
+            range1.gameObject.SetActive(true);
+            
+
         }
 
     }
@@ -123,6 +145,9 @@ public class ButtonHandlers : MonoBehaviour
         activeAction.enabled = true;
         inactiveBonusaction.gameObject.SetActive(false);
         activeBonusaction.enabled = true;
+
+        //delete afterwards
+        moveThis.moveSpeed = 6;
 
     }
 }
