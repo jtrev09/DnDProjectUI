@@ -89,8 +89,8 @@ public class MapManager : MonoBehaviour
 
             // otherwise, convert the neighbor to world position and calculate the distance
             Vector2 neighborPos = gcToVector(neighbor);
-            Vector2 penetration = new Vector2(step.x * (pos.x + (extents.x * step.x) - (neighborPos.x - (TILE_SIZE.x/2 * step.x))),
-                                      step.y * (pos.y + (extents.y * step.y) - (neighborPos.y - (TILE_SIZE.y/2 * step.y))));
+            Vector2 penetration = new Vector2(step.x * (pos.x + (extents.x/14 * step.x) - (neighborPos.x - (TILE_SIZE.x/2 * step.x))),
+                                      step.y * (pos.y + (extents.y/14 * step.y) - (neighborPos.y - (TILE_SIZE.y/2 * step.y))));
 
             // in the diagonals, if penetration x AND y are positive, we have collison
             if (penetration.x > 0 && penetration.y > 0) {
@@ -109,8 +109,8 @@ public class MapManager : MonoBehaviour
             if (!_map[neighbor.x, neighbor.y].isBlocked) continue;
 
             Vector2 neighborPos = gcToVector(neighbor);
-            Vector2 penetration = new Vector2(step.x * (pos.x + (extents.x * step.x) - (neighborPos.x - (TILE_SIZE.x/2 * step.x))),
-                                      step.y * (pos.y + (extents.y * step.y) - (neighborPos.y - (TILE_SIZE.y/2 * step.y))));
+            Vector2 penetration = new Vector2(step.x * (pos.x + (extents.x/14 * step.x) - (neighborPos.x - (TILE_SIZE.x/2 * step.x))),
+                                      step.y * (pos.y + (extents.y/14 * step.y) - (neighborPos.y - (TILE_SIZE.y/2 * step.y))));
 
             // in the cardinal directions, if penetration x OR y is positive, we have collision on that axis
             if (penetration.x > 0 || penetration.y > 0) {
@@ -146,15 +146,18 @@ public class MapManager : MonoBehaviour
                 int val = int.Parse(sval);
 
                 // instantiate the tile prefab at the current grid x, y
-                GameObject tile = Instantiate(_tilePrefabs[val], new Vector2(grid_x * TILE_SIZE.x-12, grid_y * TILE_SIZE.y-12 ), Quaternion.identity); // *** this is wrong ***
+                GameObject tile = Instantiate(_tilePrefabs[val], new Vector2(grid_x * TILE_SIZE.x, grid_y * TILE_SIZE.y ), Quaternion.identity); // *** this is wrong ***
                 // and parent it to this manager entity
                 tile.transform.parent = transform;
-
                 // set the search array blocked value based on the map value at the current grid x, y
-                _map[grid_x,grid_y].isBlocked = (val == 1); // *** this is wrong ***
-                if(val == 1)
+                //_map[grid_x,grid_y].isBlocked = (val == 1); // *** this is wrong ***
+                
+                _map[grid_x, grid_y].isBlocked = false;
+                if (val == 1)
                 {
+                    _map[grid_x, grid_y].isBlocked = true;
                     tile.GetComponent<Renderer>().material.color = new Color(0, 204, 102);
+                    
                 }
                 // set the debugging array values at the current grid x, y
 
@@ -211,8 +214,10 @@ public class MapManager : MonoBehaviour
     }
 
     // check it the coordinates specify a grid cell that is within the map boundaries
+    //gc.x >= 0 && gc.x < WIDTH && gc.y >= 0 && gc.y < HEIGHT;
     private bool onMap(Vector2Int gc)
     {
+
         return gc.x >= 0 && gc.x < WIDTH && gc.y >= 0 && gc.y < HEIGHT;
     }
 

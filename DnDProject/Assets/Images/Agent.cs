@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Agent : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Agent : MonoBehaviour
     private Vector2 _velocity = Vector2.zero;
     public bool willMove = false;
     public double moveSpeed = 6;
+    public Image movementRange;
 
     // pathfinding
     private MapManager _mmap;
@@ -30,21 +32,31 @@ public class Agent : MonoBehaviour
 
     void Update()
     {
+        movementRange.rectTransform.localScale = new Vector3((float)(moveSpeed*2), (float)(moveSpeed*2), 1);
         // on click, call the pathfinding system to generate a new path from the agent to that location
         if (Input.GetMouseButtonDown(0) && willMove) {
             Debug.Log("transform: "+transform.position[0]);
             Debug.Log("mouse: "+ Camera.main.ScreenToWorldPoint(Input.mousePosition).x);
             double x = Math.Pow(transform.position[0]- Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 2);
             double y = Math.Pow(transform.position[1] - Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 2);
+            
             double distance = Math.Sqrt(x + y);
             Debug.Log("distance: " + distance);
+            distance = Math.Round(distance / .7,MidpointRounding.AwayFromZero);
+            
+            
             // note optional last argument is to turn on visual debugging
             // *** don't uncomment this until you start fixing the path search! it will infinite loop if you accidentally click ***
             if (moveSpeed - distance >= 0)
             {
-                _path = _mmap.getPath(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), true);
-                moveSpeed -= distance;
-                Debug.Log("moveSpeed:  " + moveSpeed);
+                if (moveSpeed != 0)
+                {
+                    _path = _mmap.getPath(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), true);
+                    
+                    moveSpeed -= distance;
+                    movementRange.gameObject.SetActive(false);
+                    Debug.Log("moveSpeed:  " + moveSpeed);
+                }
             }
             willMove = false;
 

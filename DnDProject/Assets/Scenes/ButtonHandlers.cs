@@ -31,12 +31,13 @@ public class ButtonHandlers : MonoBehaviour
     public Image activeBonusaction;
     public Image inactiveBonusaction;
     public Image health;
-    public float hp = 100;
-    public float maxhp = 100;
+
+    public int size1 = 5;
+    public Image range1;
 
     void Update()
     {
-        health.fillAmount = (float)MainManager.Instance.player.GetCurrentHp() / (float)MainManager.Instance.player.GetMaxHp();
+        //health.fillAmount = (float)MainManager.Instance.player.GetCurrentHp() / (float)MainManager.Instance.player.GetMaxHp();
         
         
     }
@@ -94,7 +95,10 @@ public class ButtonHandlers : MonoBehaviour
             
             
             moveThis.willMove = true;
+
+            range1.gameObject.SetActive(true);
             
+
         }
 
     }
