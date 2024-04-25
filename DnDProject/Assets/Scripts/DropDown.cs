@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
@@ -17,8 +18,32 @@ public class DropDown : MonoBehaviour
     public string background;
     public int level = 1;
     public List<string> feats = new List<string>();
+    //These are for charactercreator dialog
+    public Button characterDoneButton;
+    public GameObject outputDialog;
+    public GameObject characterCreatorDialog;
+    public GameObject AbilityScoreDialog;
+    //These are for abilityScore dialog
 
 
+
+    void Awake()
+    {
+        characterDoneButton.onClick.AddListener(characterDoneButton_onClick);
+    }
+
+    void characterDoneButton_onClick()
+    {
+        if (race != "" && @class !="" && background != "")
+        {
+            outputDialog.SetActive(false);
+            characterCreatorDialog.SetActive(false);
+            AbilityScoreDialog.SetActive(true);
+            SetStart();
+            showRace();
+        }
+
+    }
     public TextMeshProUGUI ClassOutput, RaceOutput, SubRaceOutput, BackroundOutput, FeatOutput;
     /*
     public Transform dropdownMenu;
