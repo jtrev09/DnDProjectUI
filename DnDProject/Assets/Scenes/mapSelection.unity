@@ -6145,7 +6145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _newGameLevel: CharacterCreator
-  _mapGameLevel: VillageScene
+  _mapGameLevel: VillageScene2
   _oldGameLevel: 
   noSavedGameDialog: {fileID: 0}
 --- !u!4 &1704575034

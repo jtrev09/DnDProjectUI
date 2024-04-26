@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
@@ -17,8 +18,43 @@ public class DropDown : MonoBehaviour
     public string background;
     public int level = 1;
     public List<string> feats = new List<string>();
+    //These are for charactercreator dialog
+    public Button characterDoneButton;
+    public GameObject outputDialog;
+    public GameObject characterCreatorDialog;
+    public GameObject AbilityScoreDialog;
+    //These are for abilityScore dialog
+    public int strength = 10;
+    public int dex = 10;
+    public int con = 10;
+    public int cha = 10;
+    public int wis = 10;
+    public int intel = 10;
+    public TMP_InputField strengthScore;
+    public TMP_InputField dexScore;
+    public TMP_InputField conScore;
+    public TMP_InputField chaScore;
+    public TMP_InputField wisScore;
+    public TMP_InputField intelScore;
 
 
+    void Awake()
+    {
+        characterDoneButton.onClick.AddListener(characterDoneButton_onClick);
+    }
+
+    void characterDoneButton_onClick()
+    {
+        if (race != "" && @class !="" && background != "")
+        {
+            outputDialog.SetActive(false);
+            characterCreatorDialog.SetActive(false);
+            AbilityScoreDialog.SetActive(true);
+            SetStart();
+            showRace();
+        }
+
+    }
     public TextMeshProUGUI ClassOutput, RaceOutput, SubRaceOutput, BackroundOutput, FeatOutput;
     /*
     public Transform dropdownMenu;
@@ -50,9 +86,129 @@ public class DropDown : MonoBehaviour
         Debug.Log("Race: " + MainManager.Instance.player.GetRace());
         Debug.Log("Background: " + MainManager.Instance.player.GetBackground());
     }
+    //These functions are for the AbilityScore
+    public void SetStrength()
+    {
+        if(strengthScore.text == "-")
+        {
+            strength = 0;
+            strengthScore.text = "0";
+        }
+        else if(strengthScore.text == "")
+        {
+            strength = 0;
+            return;
+        }
+        strength = int.Parse(strengthScore.text);
+        if(strength > 20)
+        {
+            strength = 20;
+            strengthScore.text = "20";
+        }
+    }
+    public void SetDex()
+    {
+        if (dexScore.text == "-")
+        {
+            dex = 0;
+            dexScore.text = "0";
+        }
+        else if (dexScore.text == "")
+        {
+            dex = 0;
+            return;
+        }
+        dex = int.Parse(dexScore.text);
+        if (dex > 20)
+        {
+            dex = 20;
+            dexScore.text = "20";
+        }
+
+    }
+    public void SetCon()
+    {
+        if (conScore.text == "-")
+        {
+            con = 0;
+            conScore.text = "0";
+        }
+        else if (conScore.text == "")
+        {
+            con = 0;
+            return;
+        }
+        con = int.Parse(conScore.text);
+        if (con > 20)
+        {
+            con = 20;
+            conScore.text = "20";
+        }
+
+    }
+    public void SetCha()
+    {
+        if (chaScore.text == "-")
+        {
+            cha = 0;
+            chaScore.text = "0";
+        }
+        else if (chaScore.text == "")
+        {
+            cha = 0;
+            return;
+        }
+        cha = int.Parse(chaScore.text);
+        if (cha > 20)
+        {
+            cha = 20;
+            chaScore.text = "20";
+        }
+
+    }
+    public void SetWis()
+    {
+        if (wisScore.text == "-")
+        {
+            wis = 0;
+            wisScore.text = "0";
+        }
+        else if (wisScore.text == "")
+        {
+            wis = 0;
+            return;
+        }
+        wis = int.Parse(wisScore.text);
+        if (wis > 20)
+        {
+            wis = 20;
+            wisScore.text = "20";
+        }
+
+    }
+    public void SetIntel()
+    {
+        if (intelScore.text == "-")
+        {
+            intel = 0;
+            intelScore.text = "0";
+        }
+        else if (intelScore.text == "")
+        {
+            intel = 0;
+            return;
+        }
+        intel = int.Parse(intelScore.text);
+        if (intel > 20)
+        {
+            intel = 20;
+            intelScore.text = "20";
+        }
+
+    }
     public void SetPlayerStats()
     {
-        MainManager.Instance.player.SetStats(10, 10, 10, 10, 10, 10, level, 40, 14, 2, 30);
+        MainManager.Instance.player.SetStats(strength,dex, wis, con, intel, cha, level, 40, 14, 2, 30);
     }
     public void showStats()
     {
