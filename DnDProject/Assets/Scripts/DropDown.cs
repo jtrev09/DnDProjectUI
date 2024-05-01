@@ -37,6 +37,11 @@ public class DropDown : MonoBehaviour
     public TMP_InputField wisScore;
     public TMP_InputField intelScore;
 
+    //These are for spell dialog
+    public GameObject spellDialog;
+    public GameObject exportCharacterDialog;
+    public GameObject itemDialog;
+
 
     void Awake()
     {
@@ -242,8 +247,10 @@ public class DropDown : MonoBehaviour
 
     private int featIndex = 0;
     private int spellIndex = 0;
+    private int itemIndex = 0;
 
     public TextMeshProUGUI SpellOutput, ItemOutput, Selected1, Selected2, Selected3, Selected4, Selected5, Spell1, Spell2, Spell3;
+    public TextMeshProUGUI item1, item2, item3;
     public void HandleRaceData(int value)
     {
         if (value == 0)
@@ -499,23 +506,23 @@ public class DropDown : MonoBehaviour
         public void HandleFeatButton()
         {
             HandleFeatDropdown(featIndex);
-            if (Selected1.text == "")
+            if (Selected1.text == "" || FeatOutput.text == Selected1.text)
             {
                 Selected1.text = FeatOutput.text;
             }
-            else if (Selected2.text == "")
+            else if (Selected2.text == "" || FeatOutput.text == Selected2.text)
             {
                 Selected2.text = FeatOutput.text;
             }
-            else if (Selected3.text == "")
+            else if (Selected3.text == "" || FeatOutput.text == Selected3.text)
             {
                 Selected3.text = FeatOutput.text;
             }
-            else if (Selected4.text == "")
+            else if (Selected4.text == "" || FeatOutput.text == Selected4.text)
             {
                 Selected4.text = FeatOutput.text;
             }
-            else if (Selected5.text == "")
+            else if (Selected5.text == "" || FeatOutput.text == Selected5.text)
             {
                 Selected5.text = FeatOutput.text;
             }
@@ -608,12 +615,104 @@ public class DropDown : MonoBehaviour
             }
 
         }
+    //These will be used to handle the item dialog
         public void HandleItemDropdown()
         {
             int pickedEntryIndex = dropdown3.value;
             string selectedItems = dropdown3.options[pickedEntryIndex].text;
             MainManager.Instance.player.AddEquipment(selectedItems);
         }
+    public void HandleItemDropdown(int val)
+    {
+        //Insert different cases for feat and data
+        if (val == 0)
+        {
+            ItemOutput.text = "LongSword: " +
+                "\n Range: 5 feet" +
+                "\n Deals sword damage";
+        }
+        else if (val == 1)
+        {
+            ItemOutput.text = "Rock: " +
+                "\n Range: 30 feet" +
+                "\n Throw to deal damage.";
+        }
+        else if (val == 2)
+        {
+            ItemOutput.text = "Potion: " +
+                "\n Range: 30 feet" +
+                "\n Heal target for 2d4 + 2";
+        }
+        
+    }
+    public void UpdateItemButton(int selected)
+    {
+        itemIndex = selected;
+    }
+
+    public void HandleItemButton()
+    {
+        //HandleItemDropdown(itemIndex);
+        if (item1.text == "" || ItemOutput.text == item1.text)
+        {
+            item1.text = ItemOutput.text;
+        }
+        else if (item2.text == "" || ItemOutput.text == item2.text)
+        {
+            item2.text = ItemOutput.text;
+        }
+        else if (item3.text == "" || ItemOutput.text == item3.text)
+        {
+            item3.text = ItemOutput.text;
+        }
+        else
+            Debug.Log("done");
+    }
+    public void HandleItemDeleteButton()
+    {
+        //HandleFeatDropdown(featIndex);
+        
+        if (item3.text != "")
+        {
+            item3.text = "";
+        }
+        else if (item2.text != "")
+        {
+            item2.text = "";
+        }
+        else if (item1.text != "")
+        {
+            item1.text = "";
+        }
+        else
+            Debug.Log("done");
+    }
+
+    //This will be used to check to see if the class has spells. If not, skip spell selection.
+    public void MoveToSpells()
+    {
+        itemDialog.SetActive(false);
+        if (MainManager.Instance.player.GetClassName() == "Fighter")
+        {
+            exportCharacterDialog.SetActive(true);
+        }
+        else
+        {
+            spellDialog.SetActive(true);
+        }
+    }
+    public void MoveBacktToSpells()
+    {
+        exportCharacterDialog.SetActive(false);
+        if (MainManager.Instance.player.GetClassName() == "Fighter")
+        {
+            itemDialog.SetActive(true);
+        }
+        else
+        {
+            spellDialog.SetActive(true);
+        }
+    }
         public void HandleSpellDropdown()
         {
             int pickedEntryIndex = dropdown4.value;
@@ -654,15 +753,15 @@ public class DropDown : MonoBehaviour
         public void HandleSpellButton()
         {
             HandleSpellDropdown(spellIndex);
-            if (Spell1.text == "")
+            if (Spell1.text == "" || Spell1.text == SpellOutput.text)
             {
                 Spell1.text = SpellOutput.text;
             }
-            else if (Spell2.text == "")
+            else if (Spell2.text == "" || Spell2.text == SpellOutput.text)
             {
                 Spell2.text = SpellOutput.text;
             }
-            else if (Spell3.text == "")
+            else if (Spell3.text == "" || Spell3.text == SpellOutput.text)
             {
                 Spell3.text = SpellOutput.text;
             }
