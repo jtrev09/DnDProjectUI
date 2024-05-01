@@ -43,6 +43,7 @@ public class NewBehaviourScript : MonoBehaviour
             noSavedGameDialog.SetActive(true);
         }
     }
+   
 
 
     public void ExitButton()

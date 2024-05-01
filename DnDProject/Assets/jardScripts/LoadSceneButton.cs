@@ -8,6 +8,10 @@ public class LoadSceneButton : MonoBehaviour
     // Method to be called when the button is pressed
     public void LoadMapSelectionScene()
     {
-        SceneManager.LoadScene(sceneName);
+        if (MainManager.Instance.player.GetClassName() == "Fighter")
+        {
+            SceneManager.LoadScene(sceneName);
+        }
+        //SceneManager.LoadScene(sceneName);
     }
 }
