@@ -71,11 +71,12 @@ public class EnemyMovement : MonoBehaviour
             canHit = false;
             Debug.Log("he is attacking");
             int rnd = UnityEngine.Random.Range(1, 20) + 4;
-            if (rnd >= 14)
+            if (rnd >= MainManager.Instance.player.GetArmorClass())
             {
                 Debug.Log(rnd + " hits");
                 int dmg = UnityEngine.Random.Range(1, 6) + 2;
                 Debug.Log("It deals " + dmg + " damage.");
+                MainManager.Instance.player.TakeDamage(dmg);
             }
         }
     }

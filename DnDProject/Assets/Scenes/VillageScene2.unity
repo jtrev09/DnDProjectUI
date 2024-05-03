@@ -8898,14 +8898,13 @@ MonoBehaviour:
   itemPopup: {fileID: 539225800}
   moveMap: {fileID: 517889506}
   moveThis: {fileID: 46550723}
+  playerTokenToKill: {fileID: 46550721}
   confirmYesButton: {fileID: 2136869701}
   endButton: {fileID: 1664686785}
   actiona: 1
   actionb: 1
   choseAction: 0
   choseBAction: 0
-  choseLongsword: 0
-  choseShortbow: 0
   activeAction: {fileID: 59242932}
   inactiveAction: {fileID: 1266693570}
   activeBonusaction: {fileID: 1344039272}
