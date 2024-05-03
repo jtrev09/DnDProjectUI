@@ -13,14 +13,18 @@ public class BattleManager : MonoBehaviour
     private Queue<string> historyQueue = new Queue<string>(); // Queue to store history actions
 
     // Range indicator GameObjects
-    //public GameObject meleeRangeIndicator;
-    //public GameObject rangedRangeIndicator;
+    public GameObject longswordRange;
+    public GameObject shortbowRange;
+
+    // UI target GameObjects
+    public GameObject goblinTarget;
+    public GameObject GoblinToken;
 
     private void Start()
     {
         // Hide range indicators initially
-        //meleeRangeIndicator.SetActive(false);
-        //rangedRangeIndicator.SetActive(false);
+        longswordRange.SetActive(false);
+        shortbowRange.SetActive(false);
     }
 
     public void SetAction(string newAction)
@@ -28,43 +32,93 @@ public class BattleManager : MonoBehaviour
         action = newAction; // Set the current action
 
         // Show range indicator based on the selected action
-        // switch (action)
-        // {
-        //     case "Longsword":
-        //         ShowMeleeRange();
-        //         break;
-        //     case "Short Bow":
-        //         ShowRangedRange();
-        //         break;
-        //     default:
-        //         HideRangeIndicators();
-        //         break;
-        // }
+        switch (action)
+        {
+            case "Longsword":
+                ShowMeleeRange();
+                //if (!IsGoblinInRange()) DisableGoblinTarget();
+                break;
+            case "Short Bow":
+                ShowRangedRange();
+                //if (!IsGoblinInRange()) DisableGoblinTarget();
+                break;
+            default:
+                HideRangeIndicators();
+                break;
+        }
     }
 
-    // private void ShowMeleeRange()
+    //  private bool IsGoblinInRange()
     // {
-    //     meleeRangeIndicator.SetActive(true);
-    //     rangedRangeIndicator.SetActive(false);
 
-    //     // Position the melee range indicator over the player
-    //     meleeRangeIndicator.transform.position = GameObject.Find("Player").transform.position;
+    //     // private void OnTriggerEnter2D(Collider2D collision) {
+    //     // if(collision.gameObject.name == "GoblinToken") 
+    //     // {
+    //     //     Debug.Log("TEST");
+    //     // }
+    //     //}
+
+
+    //     // Determine which range indicator to use based on the selected action
+    //     GameObject rangeIndicator;
+    //     if (action == "Longsword")
+    //     {
+    //         rangeIndicator = longswordRange;
+    //     }
+    //     else if (action == "Short Bow")
+    //     {
+    //         rangeIndicator = shortbowRange;
+    //     }
+    //     else
+    //     {
+    //         return false; // No valid action selected
+    //     }
+
+    //     // Ensure the goblin token has a collider attached
+    //     CircleCollider2D goblinCollider = GoblinToken.GetComponent<CircleCollider2D>();
+    //     if (goblinCollider == null)
+    //     {
+    //         Debug.LogWarning("Goblin collider not found!");
+    //         return false;
+    //     }
+
+    //     // Get the bounds of the range indicator
+    //     Bounds rangeBounds = rangeIndicator.GetComponent<BoxCollider2D>().bounds;
+
+    //     // Check for overlap between the range indicator and the goblin collider
+    //     bool overlap = Physics2D.OverlapCircle(rangeBounds.center, rangeBounds.extents.x, goblinCollider.gameObject.layer);
+
+    //     if (overlap)
+    //     {
+    //         Debug.Log("The goblin is in range!");
+    //     }
+
+    //     return overlap;
     // }
 
-    // private void ShowRangedRange()
+    // private void DisableGoblinTarget()
     // {
-    //     meleeRangeIndicator.SetActive(false);
-    //     rangedRangeIndicator.SetActive(true);
-
-    //     // Position the ranged range indicator over the player
-    //     rangedRangeIndicator.transform.position = GameObject.Find("Player").transform.position;
+    //     // Disable the UI element representing the goblin target
+    //     goblinTarget.SetActive(false);
     // }
 
-    // private void HideRangeIndicators()
-    // {
-    //     meleeRangeIndicator.SetActive(false);
-    //     rangedRangeIndicator.SetActive(false);
-    // }
+    private void ShowMeleeRange()
+    {
+        longswordRange.SetActive(true);
+        shortbowRange.SetActive(false);
+    }
+
+    private void ShowRangedRange()
+    {
+        longswordRange.SetActive(false);
+        shortbowRange.SetActive(true);
+    }
+
+    private void HideRangeIndicators()
+    {
+        longswordRange.SetActive(false);
+        shortbowRange.SetActive(false);
+    }
 
     public void SetTarget(string newTarget)
     {

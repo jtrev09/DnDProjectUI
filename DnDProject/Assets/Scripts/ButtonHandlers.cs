@@ -13,6 +13,10 @@ public class ButtonHandlers : MonoBehaviour
     public GameObject spellPopup;
     public GameObject itemPopup;
     public GameObject moveMap;
+    //public Button shortbowButton;
+    //public Button longswordButton;
+
+    //public GameObject goblin;
 
     public Agent moveThis;
     
@@ -26,6 +30,9 @@ public class ButtonHandlers : MonoBehaviour
     public bool choseAction = false;
     public bool choseBAction = false;
 
+    public bool choseLongsword;
+    public bool choseShortbow;
+
     public Image activeAction;
     public Image inactiveAction;
     public Image activeBonusaction;
@@ -35,11 +42,10 @@ public class ButtonHandlers : MonoBehaviour
     public int size1 = 5;
     public Image range1;
 
+
     void Update()
     {
-        //health.fillAmount = (float)MainManager.Instance.player.GetCurrentHp() / (float)MainManager.Instance.player.GetMaxHp();
-        
-        
+        health.fillAmount = (float)MainManager.Instance.player.GetCurrentHp() / (float)MainManager.Instance.player.GetMaxHp();
     }
     
 
@@ -50,6 +56,9 @@ public class ButtonHandlers : MonoBehaviour
         spellButton.onClick.AddListener(spellButton_onClick);
         itemButton.onClick.AddListener(itemButton_onClick);
         moveButton.onClick.AddListener(moveButton_onClick);
+
+        // longswordButton.onClick.AddListener(longswordButton_onClick);
+        // shortbowButton.onClick.AddListener(shortbowButton_onClick);
 
         confirmYesButton.onClick.AddListener(confirmYesButton_onClick);
         endButton.onClick.AddListener(endButton_onClick);
@@ -111,7 +120,11 @@ public class ButtonHandlers : MonoBehaviour
             Debug.Log("action: " + actiona);
             MainManager.Instance.player.UseAction();
 
-            MainManager.Instance.player.TakeDamage(10);
+            // if(longsword)
+            // {
+            //     //goblin.
+            // }
+            //MainManager.Instance.player.TakeDamage(10);
 
             inactiveAction.gameObject.SetActive(true);
             activeAction.enabled = false;
@@ -126,11 +139,27 @@ public class ButtonHandlers : MonoBehaviour
         }
         choseAction = false;
         choseBAction = false;
-
-        
-        
-
     }
+
+    public void clickShortbow()
+    {
+        choseShortbow = true;
+    }
+
+    public void clickLongsword()
+    {
+        choseLongsword = true;
+    }
+
+    // void longswordButton_onClick()
+    // {
+    //     choseLongsword = true;
+    // }
+    // void shortbowButton_onClick()
+    // {
+    //     choseShortbow = true;        
+    // }
+
 
     void endButton_onClick()
     {
@@ -138,6 +167,8 @@ public class ButtonHandlers : MonoBehaviour
         actionb = true;
         choseAction = false;
         choseBAction = false;
+        choseShortbow = false;
+        choseLongsword = false;
 
         MainManager.Instance.player.ResetPlayerForTurn();
 
@@ -150,4 +181,6 @@ public class ButtonHandlers : MonoBehaviour
         moveThis.moveSpeed = 6;
 
     }
+
+    
 }
