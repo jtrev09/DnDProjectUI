@@ -50,7 +50,7 @@ public class DropDown : MonoBehaviour
 
     void characterDoneButton_onClick()
     {
-        if (race != "" && @class !="" && background != "")
+        if (race != "" && @class != "" && background != "")
         {
             outputDialog.SetActive(false);
             characterCreatorDialog.SetActive(false);
@@ -94,18 +94,18 @@ public class DropDown : MonoBehaviour
     //These functions are for the AbilityScore
     public void SetStrength()
     {
-        if(strengthScore.text == "-")
+        if (strengthScore.text == "-")
         {
             strength = 0;
             strengthScore.text = "0";
         }
-        else if(strengthScore.text == "")
+        else if (strengthScore.text == "")
         {
             strength = 0;
             return;
         }
         strength = int.Parse(strengthScore.text);
-        if(strength > 20)
+        if (strength > 20)
         {
             strength = 20;
             strengthScore.text = "20";
@@ -213,7 +213,28 @@ public class DropDown : MonoBehaviour
     }
     public void SetPlayerStats()
     {
-        MainManager.Instance.player.SetStats(strength,dex, wis, con, intel, cha, level, 40, 14, 2, 30);
+        MainManager.Instance.player.SetStats(strength, dex, con, intel, wis, cha, level, 10, 10, 10, 2, 6);
+        int pb = 2;
+        if (level > 16)
+        {
+            pb = 6;
+        }
+        else if (level > 12)
+        {
+            pb = 5;
+        }
+        else if (level > 8)
+        {
+            pb = 4;
+        }
+        else if (level > 4)
+        {
+            pb = 3;
+        }
+        int initiative = MainManager.Instance.player.DexterityModifier();
+        int hp = (level * (6 + MainManager.Instance.player.ConstitutionModifier()));
+        int baseAC = 10 + MainManager.Instance.player.DexterityModifier();
+        MainManager.Instance.player.SetStats(strength, dex, con, intel, wis, cha, level, hp, baseAC, initiative, pb, 6);
     }
     public void showStats()
     {
@@ -498,130 +519,130 @@ public class DropDown : MonoBehaviour
         //feats.Add(FeatOutput);
         MainManager.Instance.player.AddFeat(selectedOptions);
     }
-        public void UpdateFeatButton(int selected)
+    public void UpdateFeatButton(int selected)
+    {
+        featIndex = selected;
+    }
+
+    public void HandleFeatButton()
+    {
+        HandleFeatDropdown(featIndex);
+        if (Selected1.text == "" || FeatOutput.text == Selected1.text)
         {
-            featIndex = selected;
+            Selected1.text = FeatOutput.text;
+        }
+        else if (Selected2.text == "" || FeatOutput.text == Selected2.text)
+        {
+            Selected2.text = FeatOutput.text;
+        }
+        else if (Selected3.text == "" || FeatOutput.text == Selected3.text)
+        {
+            Selected3.text = FeatOutput.text;
+        }
+        else if (Selected4.text == "" || FeatOutput.text == Selected4.text)
+        {
+            Selected4.text = FeatOutput.text;
+        }
+        else if (Selected5.text == "" || FeatOutput.text == Selected5.text)
+        {
+            Selected5.text = FeatOutput.text;
+        }
+        else
+            Debug.Log("done");
+    }
+
+    public void HandleFeatDeleteButton()
+    {
+        //HandleFeatDropdown(featIndex);
+        if (Selected5.text != "")
+        {
+            Selected5.text = "";
+        }
+        else if (Selected4.text != "")
+        {
+            Selected4.text = "";
+        }
+        else if (Selected3.text != "")
+        {
+            Selected3.text = "";
+        }
+        else if (Selected2.text != "")
+        {
+            Selected2.text = "";
+        }
+        else if (Selected1.text != "")
+        {
+            Selected1.text = "";
+        }
+        else
+            Debug.Log("done");
+    }
+
+    public void HandleFeatDropdown(int val)
+    {
+        //Insert different cases for feat and data
+        if (val == 0)
+        {
+            FeatOutput.text = "Alert: " +
+                "\n Gain a +5 bonus to initiative." +
+                "\n Can�t be surprised while conscious." +
+                "\n Other creatures don�t gain advantage on attack rolls against you as a result of being hidden from you.";
+        }
+        if (val == 1)
+        {
+            FeatOutput.text = "Athlete: " +
+                "\n Increase your Strength or Dexterity score by 1, to a maximum of 20." +
+                "\n Standing up from prone uses only 5 feet of movement." +
+                "\n Can make a running long jump or a running high jump after moving only 5 feet on foot.";
+        }
+        if (val == 2)
+        {
+            FeatOutput.text = "Actor: " +
+                "\n Increase your Charisma score by 1, to a maximum of 20." +
+                "\n Have advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person.";
+        }
+        if (val == 3)
+        {
+            FeatOutput.text = "Crossbow Expert: " +
+                "\n Being within 5 feet of a hostile creature doesn�t impose disadvantage on your ranged attack rolls." +
+                "\n When you use the Attack action and attack with a one handed weapon, you can use a bonus action to attack with a loaded hand crossbow you are holding.";
+        }
+        if (val == 4)
+        {
+            FeatOutput.text = "Defensive Duelist" +
+                "\n When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you.";
+        }
+        if (val == 5)
+        {
+            FeatOutput.text = "Durable" +
+                "\n Increase constitution by 1";
+        }
+        if (val == 6)
+        {
+            FeatOutput.text = "Elemental Adept" +
+                "\n choose one o f the following damage types: acid, cold, fire, lightning, or thunder. Spells you cast ignore resistance to damage of the chosen type.";
+        }
+        if (val == 7)
+        {
+            FeatOutput.text = "Great Weapon Master" +
+                "\n On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action." +
+                "\n you can choose to take a - 5 penalty to the attack roll. If the attack hits, you add +10 to the attack�s damage.";
+        }
+        if (val == 8)
+        {
+            FeatOutput.text = "Mobile" +
+                "\n Speed increases by 10ft" +
+                "\n Difficult terrain doesn't cost extra movement";
         }
 
-        public void HandleFeatButton()
-        {
-            HandleFeatDropdown(featIndex);
-            if (Selected1.text == "" || FeatOutput.text == Selected1.text)
-            {
-                Selected1.text = FeatOutput.text;
-            }
-            else if (Selected2.text == "" || FeatOutput.text == Selected2.text)
-            {
-                Selected2.text = FeatOutput.text;
-            }
-            else if (Selected3.text == "" || FeatOutput.text == Selected3.text)
-            {
-                Selected3.text = FeatOutput.text;
-            }
-            else if (Selected4.text == "" || FeatOutput.text == Selected4.text)
-            {
-                Selected4.text = FeatOutput.text;
-            }
-            else if (Selected5.text == "" || FeatOutput.text == Selected5.text)
-            {
-                Selected5.text = FeatOutput.text;
-            }
-            else
-                Debug.Log("done");
-        }
-
-        public void HandleFeatDeleteButton()
-        {
-            //HandleFeatDropdown(featIndex);
-            if (Selected5.text != "")
-            {
-                Selected5.text = "";
-            }
-            else if (Selected4.text != "")
-            {
-                Selected4.text = "";
-            }
-            else if (Selected3.text != "")
-            {
-                Selected3.text = "";
-            }
-            else if (Selected2.text != "")
-            {
-                Selected2.text = "";
-            }
-            else if (Selected1.text != "")
-            {
-                Selected1.text = "";
-            }
-            else
-                Debug.Log("done");
-        }
-
-        public void HandleFeatDropdown(int val)
-        {
-            //Insert different cases for feat and data
-            if (val == 0)
-            {
-                FeatOutput.text = "Alert: " +
-                    "\n Gain a +5 bonus to initiative." +
-                    "\n Can�t be surprised while conscious." +
-                    "\n Other creatures don�t gain advantage on attack rolls against you as a result of being hidden from you.";
-            }
-            if (val == 1)
-            {
-                FeatOutput.text = "Athlete: " +
-                    "\n Increase your Strength or Dexterity score by 1, to a maximum of 20." +
-                    "\n Standing up from prone uses only 5 feet of movement." +
-                    "\n Can make a running long jump or a running high jump after moving only 5 feet on foot.";
-            }
-            if (val == 2)
-            {
-                FeatOutput.text = "Actor: " +
-                    "\n Increase your Charisma score by 1, to a maximum of 20." +
-                    "\n Have advantage on Charisma (Deception) and Charisma (Performance) checks when trying to pass yourself off as a different person.";
-            }
-            if (val == 3)
-            {
-                FeatOutput.text = "Crossbow Expert: " +
-                    "\n Being within 5 feet of a hostile creature doesn�t impose disadvantage on your ranged attack rolls." +
-                    "\n When you use the Attack action and attack with a one handed weapon, you can use a bonus action to attack with a loaded hand crossbow you are holding.";
-            }
-            if (val == 4)
-            {
-                FeatOutput.text = "Defensive Duelist" +
-                    "\n When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially causing the attack to miss you.";
-            }
-            if (val == 5)
-            {
-                FeatOutput.text = "Durable" +
-                    "\n Increase constitution by 1";
-            }
-            if (val == 6)
-            {
-                FeatOutput.text = "Elemental Adept" +
-                    "\n choose one o f the following damage types: acid, cold, fire, lightning, or thunder. Spells you cast ignore resistance to damage of the chosen type.";
-            }
-            if (val == 7)
-            {
-                FeatOutput.text = "Great Weapon Master" +
-                    "\n On your turn, when you score a critical hit with a melee weapon or reduce a creature to 0 hit points with one, you can make one melee weapon attack as a bonus action." +
-                    "\n you can choose to take a - 5 penalty to the attack roll. If the attack hits, you add +10 to the attack�s damage.";
-            }
-            if (val == 8)
-            {
-                FeatOutput.text = "Mobile" +
-                    "\n Speed increases by 10ft" +
-                    "\n Difficult terrain doesn't cost extra movement";
-            }
-
-        }
+    }
     //These will be used to handle the item dialog
-        public void HandleItemDropdown()
-        {
-            int pickedEntryIndex = dropdown3.value;
-            string selectedItems = dropdown3.options[pickedEntryIndex].text;
-            MainManager.Instance.player.AddEquipment(selectedItems);
-        }
+    public void HandleItemDropdown()
+    {
+        int pickedEntryIndex = dropdown3.value;
+        string selectedItems = dropdown3.options[pickedEntryIndex].text;
+        MainManager.Instance.player.AddEquipment(selectedItems);
+    }
     public void HandleItemDropdown(int val)
     {
         //Insert different cases for feat and data
@@ -643,7 +664,7 @@ public class DropDown : MonoBehaviour
                 "\n Range: 30 feet" +
                 "\n Heal target for 2d4 + 2";
         }
-        
+
     }
     public void UpdateItemButton(int selected)
     {
@@ -671,7 +692,7 @@ public class DropDown : MonoBehaviour
     public void HandleItemDeleteButton()
     {
         //HandleFeatDropdown(featIndex);
-        
+
         if (item3.text != "")
         {
             item3.text = "";
@@ -713,261 +734,261 @@ public class DropDown : MonoBehaviour
             spellDialog.SetActive(true);
         }
     }
-        public void HandleSpellDropdown()
+    public void HandleSpellDropdown()
+    {
+        int pickedEntryIndex = dropdown4.value;
+        string selectedItems = dropdown4.options[pickedEntryIndex].text;
+        MainManager.Instance.player.AddSpells(selectedItems);
+    }
+
+
+
+    public void HandleSpellDropdown(int val)
+    {
+        if (val == 0)
         {
-            int pickedEntryIndex = dropdown4.value;
-            string selectedItems = dropdown4.options[pickedEntryIndex].text;
-            MainManager.Instance.player.AddSpells(selectedItems);
+            SpellOutput.text = "FireBall: " +
+                "\n Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw." +
+                "\n  A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.";
+        }
+        if (val == 1)
+        {
+            SpellOutput.text = "Disintegrate: " +
+                "\n A creature targeted by this spell must make a Dexterity saving throw." +
+                "\n On a failed save, the target takes 10d6 + 40 force damage." +
+                "\n The target is disintegrated if this damage leaves it with 0 hit points.";
+        }
+        if (val == 2)
+        {
+            SpellOutput.text = "TrUe STriKe: " +
+                "\n oN yOuR nExT tUrN, yOu GaIn AdVaNtAgE oN yOuR fIrSt AtTaCk RoLl AgAiNsT tHe TaRgEt, pRoViDeD tHaT tHiS sPeLl HaSn'T eNdEd.";
         }
 
+    }
 
+    public void UpdateSpellButton(int selected)
+    {
+        spellIndex = selected;
+    }
 
-        public void HandleSpellDropdown(int val)
+    public void HandleSpellButton()
+    {
+        HandleSpellDropdown(spellIndex);
+        if (Spell1.text == "" || Spell1.text == SpellOutput.text)
         {
-            if (val == 0)
-            {
-                SpellOutput.text = "FireBall: " +
-                    "\n Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw." +
-                    "\n  A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one.";
-            }
-            if (val == 1)
-            {
-                SpellOutput.text = "Disintegrate: " +
-                    "\n A creature targeted by this spell must make a Dexterity saving throw." +
-                    "\n On a failed save, the target takes 10d6 + 40 force damage." +
-                    "\n The target is disintegrated if this damage leaves it with 0 hit points.";
-            }
-            if (val == 2)
-            {
-                SpellOutput.text = "TrUe STriKe: " +
-                    "\n oN yOuR nExT tUrN, yOu GaIn AdVaNtAgE oN yOuR fIrSt AtTaCk RoLl AgAiNsT tHe TaRgEt, pRoViDeD tHaT tHiS sPeLl HaSn'T eNdEd.";
-            }
-
+            Spell1.text = SpellOutput.text;
         }
-
-        public void UpdateSpellButton(int selected)
+        else if (Spell2.text == "" || Spell2.text == SpellOutput.text)
         {
-            spellIndex = selected;
+            Spell2.text = SpellOutput.text;
         }
-
-        public void HandleSpellButton()
+        else if (Spell3.text == "" || Spell3.text == SpellOutput.text)
         {
-            HandleSpellDropdown(spellIndex);
-            if (Spell1.text == "" || Spell1.text == SpellOutput.text)
-            {
-                Spell1.text = SpellOutput.text;
-            }
-            else if (Spell2.text == "" || Spell2.text == SpellOutput.text)
-            {
-                Spell2.text = SpellOutput.text;
-            }
-            else if (Spell3.text == "" || Spell3.text == SpellOutput.text)
-            {
-                Spell3.text = SpellOutput.text;
-            }
-            else
-                Debug.Log("done");
+            Spell3.text = SpellOutput.text;
         }
+        else
+            Debug.Log("done");
+    }
 
-        public void HandleSpellDeleteButton()
+    public void HandleSpellDeleteButton()
+    {
+
+        if (Spell3.text != "")
         {
-
-            if (Spell3.text != "")
-            {
-                Spell3.text = "";
-            }
-            else if (Spell2.text != "")
-            {
-                Spell2.text = "";
-            }
-            else if (Spell1.text != "")
-            {
-                Spell1.text = "";
-            }
-            else
-                Debug.Log("done");
+            Spell3.text = "";
         }
-
-        public void HandleBackroundData(int value)
+        else if (Spell2.text != "")
         {
-            switch (value)
-            {
-                case 0:
-                    BackroundOutput.text = " ";
-                    break;
-                case 1:
-                    BackroundOutput.text = "Acolyte";
-                    background = "Acolyte";
-                    break;
-                case 2:
-                    BackroundOutput.text = "Anthropologist";
-                    background = "Anthropologist";
-                    break;
-                case 3:
-                    BackroundOutput.text = "Archaeologist";
-                    background = "Archaeologist";
-                    break;
-
-                case 4:
-                    BackroundOutput.text = "Athlete";
-                    background = "Athlete";
-                    break;
-                case 5:
-                    BackroundOutput.text = "Charlatan";
-                    background = "Charlatan";
-                    break;
-                case 6:
-                    BackroundOutput.text = "City Watch";
-                    background = "City Watch";
-                    break;
-                case 7:
-                    BackroundOutput.text = "Clan Crafter";
-                    background = "Clan Crafter";
-                    break;
-                case 8:
-                    BackroundOutput.text = "Cloistered Scholar";
-                    background = "Cloistered Scholar";
-                    break;
-                case 9:
-                    BackroundOutput.text = "Courtier";
-                    background = "Courtier";
-                    break;
-
-                case 10:
-                    BackroundOutput.text = "Criminal";
-                    background = "Criminal";
-                    break;
-                case 11:
-                    BackroundOutput.text = "Entertainer";
-                    background = "Entertainer";
-                    break;
-                case 12:
-                    BackroundOutput.text = "Faceless";
-                    background = "Faceless";
-                    break;
-                case 13:
-                    BackroundOutput.text = "Faction Agent";
-                    background = "Faction Agent";
-                    break;
-                case 14:
-                    BackroundOutput.text = "Far Traveler";
-                    background = "Far Traveler";
-                    break;
-                case 15:
-                    BackroundOutput.text = "Feylost";
-                    background = "Feylost";
-                    break;
-
-                case 16:
-                    BackroundOutput.text = "Fisher";
-                    background = "Fisher";
-                    break;
-                case 17:
-                    BackroundOutput.text = "Folk Hero";
-                    background = "Folk Hero";
-                    break;
-                case 18:
-                    BackroundOutput.text = "Giant Foundling";
-                    background = "Giant Foundling";
-                    break;
-                case 19:
-                    BackroundOutput.text = "Gladiator";
-                    background = "Gladiator";
-                    break;
-                case 20:
-                    BackroundOutput.text = "Guild Artisan";
-                    background = "Guild Artisan";
-                    break;
-                case 21:
-                    BackroundOutput.text = "Guild Merchant";
-                    background = "Guild Merchant";
-                    break;
-
-                case 22:
-                    BackroundOutput.text = "Haunted One";
-                    background = "Haunted One";
-                    break;
-                case 23:
-                    BackroundOutput.text = "Hermit";
-                    background = "Hermit";
-                    break;
-                case 24:
-                    BackroundOutput.text = "House Agent";
-                    background = "House Agent";
-                    break;
-                case 25:
-                    BackroundOutput.text = "Inheritor";
-                    background = "Inheritor";
-                    break;
-                case 26:
-                    BackroundOutput.text = "Knight";
-                    background = "Knight";
-                    break;
-                case 27:
-                    BackroundOutput.text = "Knight of the Order";
-                    background = "Knight of the Order";
-                    break;
-
-                case 28:
-                    BackroundOutput.text = "Marine";
-                    background = "Marine";
-                    break;
-                case 29:
-                    BackroundOutput.text = "Mercenary Veteran";
-                    background = "Mercenary Veteran";
-                    break;
-                case 30:
-                    BackroundOutput.text = "Noble";
-                    background = "Noble";
-                    break;
-                case 31:
-                    BackroundOutput.text = "Outlander";
-                    background = "Outlander";
-                    break;
-                case 32:
-                    BackroundOutput.text = "Pirate";
-                    background = "Pirate";
-                    break;
-                case 33:
-                    BackroundOutput.text = "Rewarded";
-                    background = "Rewarded";
-                    break;
-
-                case 34:
-                    BackroundOutput.text = "Ruined";
-                    background = "Ruined";
-                    break;
-                case 35:
-                    BackroundOutput.text = "Rune Carver";
-                    background = "Rune Carver";
-                    break;
-                case 36:
-                    BackroundOutput.text = "Sage";
-                    background = "Sage";
-                    break;
-                case 37:
-                    BackroundOutput.text = "Sailor";
-                    background = "Sailor";
-                    break;
-                case 38:
-                    BackroundOutput.text = "Shipwright";
-                    background = "Shipwright";
-                    break;
-                case 39:
-                    BackroundOutput.text = "Smuggler";
-                    background = "Smuggler";
-                    break;
-
-                case 40:
-                    BackroundOutput.text = "Soldier";
-                    background = "Soldier";
-                    break;
-                case 41:
-                    BackroundOutput.text = "Spy";
-                    background = "Spy";
-                    break;
-            }
+            Spell2.text = "";
         }
+        else if (Spell1.text != "")
+        {
+            Spell1.text = "";
+        }
+        else
+            Debug.Log("done");
+    }
+
+    public void HandleBackroundData(int value)
+    {
+        switch (value)
+        {
+            case 0:
+                BackroundOutput.text = " ";
+                break;
+            case 1:
+                BackroundOutput.text = "Acolyte";
+                background = "Acolyte";
+                break;
+            case 2:
+                BackroundOutput.text = "Anthropologist";
+                background = "Anthropologist";
+                break;
+            case 3:
+                BackroundOutput.text = "Archaeologist";
+                background = "Archaeologist";
+                break;
+
+            case 4:
+                BackroundOutput.text = "Athlete";
+                background = "Athlete";
+                break;
+            case 5:
+                BackroundOutput.text = "Charlatan";
+                background = "Charlatan";
+                break;
+            case 6:
+                BackroundOutput.text = "City Watch";
+                background = "City Watch";
+                break;
+            case 7:
+                BackroundOutput.text = "Clan Crafter";
+                background = "Clan Crafter";
+                break;
+            case 8:
+                BackroundOutput.text = "Cloistered Scholar";
+                background = "Cloistered Scholar";
+                break;
+            case 9:
+                BackroundOutput.text = "Courtier";
+                background = "Courtier";
+                break;
+
+            case 10:
+                BackroundOutput.text = "Criminal";
+                background = "Criminal";
+                break;
+            case 11:
+                BackroundOutput.text = "Entertainer";
+                background = "Entertainer";
+                break;
+            case 12:
+                BackroundOutput.text = "Faceless";
+                background = "Faceless";
+                break;
+            case 13:
+                BackroundOutput.text = "Faction Agent";
+                background = "Faction Agent";
+                break;
+            case 14:
+                BackroundOutput.text = "Far Traveler";
+                background = "Far Traveler";
+                break;
+            case 15:
+                BackroundOutput.text = "Feylost";
+                background = "Feylost";
+                break;
+
+            case 16:
+                BackroundOutput.text = "Fisher";
+                background = "Fisher";
+                break;
+            case 17:
+                BackroundOutput.text = "Folk Hero";
+                background = "Folk Hero";
+                break;
+            case 18:
+                BackroundOutput.text = "Giant Foundling";
+                background = "Giant Foundling";
+                break;
+            case 19:
+                BackroundOutput.text = "Gladiator";
+                background = "Gladiator";
+                break;
+            case 20:
+                BackroundOutput.text = "Guild Artisan";
+                background = "Guild Artisan";
+                break;
+            case 21:
+                BackroundOutput.text = "Guild Merchant";
+                background = "Guild Merchant";
+                break;
+
+            case 22:
+                BackroundOutput.text = "Haunted One";
+                background = "Haunted One";
+                break;
+            case 23:
+                BackroundOutput.text = "Hermit";
+                background = "Hermit";
+                break;
+            case 24:
+                BackroundOutput.text = "House Agent";
+                background = "House Agent";
+                break;
+            case 25:
+                BackroundOutput.text = "Inheritor";
+                background = "Inheritor";
+                break;
+            case 26:
+                BackroundOutput.text = "Knight";
+                background = "Knight";
+                break;
+            case 27:
+                BackroundOutput.text = "Knight of the Order";
+                background = "Knight of the Order";
+                break;
+
+            case 28:
+                BackroundOutput.text = "Marine";
+                background = "Marine";
+                break;
+            case 29:
+                BackroundOutput.text = "Mercenary Veteran";
+                background = "Mercenary Veteran";
+                break;
+            case 30:
+                BackroundOutput.text = "Noble";
+                background = "Noble";
+                break;
+            case 31:
+                BackroundOutput.text = "Outlander";
+                background = "Outlander";
+                break;
+            case 32:
+                BackroundOutput.text = "Pirate";
+                background = "Pirate";
+                break;
+            case 33:
+                BackroundOutput.text = "Rewarded";
+                background = "Rewarded";
+                break;
+
+            case 34:
+                BackroundOutput.text = "Ruined";
+                background = "Ruined";
+                break;
+            case 35:
+                BackroundOutput.text = "Rune Carver";
+                background = "Rune Carver";
+                break;
+            case 36:
+                BackroundOutput.text = "Sage";
+                background = "Sage";
+                break;
+            case 37:
+                BackroundOutput.text = "Sailor";
+                background = "Sailor";
+                break;
+            case 38:
+                BackroundOutput.text = "Shipwright";
+                background = "Shipwright";
+                break;
+            case 39:
+                BackroundOutput.text = "Smuggler";
+                background = "Smuggler";
+                break;
+
+            case 40:
+                BackroundOutput.text = "Soldier";
+                background = "Soldier";
+                break;
+            case 41:
+                BackroundOutput.text = "Spy";
+                background = "Spy";
+                break;
+        }
+    }
 
 
-    } 
+}

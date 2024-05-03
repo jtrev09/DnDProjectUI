@@ -16,6 +16,7 @@ public class Agent : MonoBehaviour
     public double moveSpeed = 6;
     public Image movementRange;
 
+
     // pathfinding
     private MapManager _mmap;
     private List<Vector2> _path;
@@ -52,8 +53,12 @@ public class Agent : MonoBehaviour
                 if (moveSpeed != 0)
                 {
                     _path = _mmap.getPath(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), true);
+                    Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                    if(_path != null)
+                    {
+                        moveSpeed -= distance;
+                    }
                     
-                    moveSpeed -= distance;
                     movementRange.gameObject.SetActive(false);
                     Debug.Log("moveSpeed:  " + moveSpeed);
                 }
@@ -83,5 +88,9 @@ public class Agent : MonoBehaviour
         // use the overlapResponse vector to move yourself out of walls (it will be (0,0) if no overlap detected)
         transform.position = transform.position + (Vector3)overlapResponse;
 
+    }
+    public void resetMovement()
+    {
+        moveSpeed = 6;
     }
 }

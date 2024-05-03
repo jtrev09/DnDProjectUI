@@ -1122,6 +1122,7 @@ GameObject:
   - component: {fileID: 160813144}
   - component: {fileID: 160813143}
   - component: {fileID: 160813145}
+  - component: {fileID: 160813146}
   m_Layer: 0
   m_Name: GoblinToken
   m_TagString: Goblin
@@ -1283,6 +1284,22 @@ MonoBehaviour:
   intelligence: 10
   wisdom: 8
   charisma: 8
+--- !u!114 &160813146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160813140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf62182adae6914999436c1ef4e8116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SPEED: 10
+  targetPosition: {x: 0, y: 0}
+  target: {fileID: 46550721}
+  moveSpeed: 6
 --- !u!1 &163641489
 GameObject:
   m_ObjectHideFlags: 0
@@ -6200,6 +6217,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &904426217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 904426219}
+  - component: {fileID: 904426218}
+  m_Layer: 0
+  m_Name: EnemyTurnHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &904426218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904426217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f9e710e1da24f478e6b1b6cac22abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  actionSeq: {fileID: 0}
+  playerUI: {fileID: 292757410}
+  btnName: 
+--- !u!4 &904426219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904426217}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.25, y: 12.16, z: 90}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &914569513
 GameObject:
   m_ObjectHideFlags: 0
@@ -9418,6 +9483,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 904426218}
+        m_TargetAssemblyTypeName: TurnedBasedSystem, Assembly-CSharp
+        m_MethodName: passTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 160813146}
+        m_TargetAssemblyTypeName: EnemyMovement, Assembly-CSharp
+        m_MethodName: findSpot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 46550723}
+        m_TargetAssemblyTypeName: Agent, Assembly-CSharp
+        m_MethodName: resetMovement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1664686786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11822,3 +11923,4 @@ SceneRoots:
   - {fileID: 1434117125}
   - {fileID: 706577299}
   - {fileID: 1313970385}
+  - {fileID: 904426219}

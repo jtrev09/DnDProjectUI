@@ -70,7 +70,7 @@ public class PlayerCharacter : MonoBehaviour
 
         }
 
-        public void SetStats(int str, int dex, int con, int intel, int wis, int cha, int level, int hp, int ac, int initiative, double speed)
+        public void SetStats(int str, int dex, int con, int intel, int wis, int cha, int level, int hp, int ac, int initiative, int profBonus, double speed)
         {
             strength = str;
             dexterity = dex;
@@ -85,6 +85,7 @@ public class PlayerCharacter : MonoBehaviour
             this.initiative = initiative;
             this.maxSpeed = speed;
             currentSpeed = speed;
+            proficiencyBonus = profBonus;
 
         }
 
